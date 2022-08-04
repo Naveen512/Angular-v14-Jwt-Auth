@@ -26,14 +26,14 @@ export class AuthGuard implements CanActivate {
     var userProfile = this.authService.userProfile.getValue();
 
     if ((userProfile?.sub ?? 0) > 0) {
-      if (route.data['requiredAuth'] && route.data['requiredAuth'] == false) {
+      if (route.data['requiredAuth'] == false) {
         this.router.navigate(['/']);
         return false;
       }
 
       return true;
     } else {
-      if (route.data['requiredAuth'] && route.data['requiredAuth'] == true) {
+      if (route.data['requiredAuth'] == true) {
         this.router.navigate(['/']);
         return false;
       }
