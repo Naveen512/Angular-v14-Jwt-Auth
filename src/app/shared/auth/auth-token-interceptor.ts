@@ -23,7 +23,7 @@ export class AuthTokenInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    if (req.url.indexOf('login') > -1 || req.url.indexOf('refreshtoken') > -1) {
+    if (req.url.indexOf('Login') > -1 || req.url.indexOf('refreshtoken') > -1) {
       return next.handle(req);
     }
 
@@ -31,7 +31,7 @@ export class AuthTokenInterceptor implements HttpInterceptor {
     var token: TokenModel;
     if (localStorageTokens) {
       token = JSON.parse(localStorageTokens) as TokenModel;
-      var isTokenExpired = this.jwtHelper.isTokenExpired(token?.access_token);
+      var isTokenExpired = this.jwtHelper.isTokenExpired(token?.accessToken);
       if (!isTokenExpired) {
         return next.handle(req);
       } else {
@@ -39,13 +39,13 @@ export class AuthTokenInterceptor implements HttpInterceptor {
           switchMap((newTokens: TokenModel) => {
             localStorage.setItem('tokens', JSON.stringify(newTokens));
             var userInfo = this.jwtHelper.decodeToken(
-              newTokens.access_token
+              newTokens.accessToken
             ) as UserProfile;
             this.authService.userProfile.next(userInfo);
             const transformedReq = req.clone({
               headers: req.headers.set(
                 'Authorization',
-                `bearer ${newTokens.access_token}`
+                `bearer ${newTokens.accessToken}`
               ),
             });
             return next.handle(transformedReq);

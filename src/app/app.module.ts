@@ -15,8 +15,8 @@ export function jwtOptionFactor(authService: AuthService) {
     tokenGetter: () => {
       return authService.getAccessToken();
     },
-    allowedDomains: ['localhost:3000'],
-    disallowedRoutes: ['http://localhost:3000/auth/login'],
+    allowedDomains: ['localhost:44354'],
+    disallowedRoutes: ['https://localhost:44354/api/Auth/Login'],
   };
 }
 

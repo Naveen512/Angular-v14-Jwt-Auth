@@ -1,14 +1,14 @@
+import { User } from './user';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FavMovie } from './fav-movie';
 
 @Injectable({
   providedIn: 'root',
 })
-export class MoviesService {
+export class UsersService {
   constructor(private httpClient: HttpClient) {}
-
+  private baseUrl = 'https://localhost:44354/api/User/';
   getFavMovies() {
-    return this.httpClient.get<FavMovie[]>('http://localhost:3000/user/fav-movies');
+    return this.httpClient.get<User[]>(this.baseUrl + 'Get');
   }
 }

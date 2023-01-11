@@ -1,20 +1,20 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/">Jwt Auth Demo</a>
+    <a class="navbar-brand" routerLink="/">Auth App</a>
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav">
-        <li class="nav-item" *ngIf="(userProfile?.sub ?? 0) > 0">
+        <li class="nav-item" *ngIf="(userProfile?.id ?? 0) != 0">
           <a class="nav-link active" routerLink="/movies/fav-movies">Movies</a>
         </li>
       </ul>
     </div>
     <div class="d-flex">
       <ul class="navbar-nav">
-        <li class="nav-item" *ngIf="(userProfile?.sub ?? 0) == 0">
+        <li class="nav-item" *ngIf="(userProfile?.id ?? 0) == 0">
           <a class="nav-link active" routerLink="/auth/login">Login</a>
         </li>
-        <li class="nav-item" *ngIf="(userProfile?.sub ?? 0) > 0">
-          <a class="nav-link active" href="#">{{ userProfile?.email }}</a>
+        <li class="nav-item" *ngIf="(userProfile?.id ?? 0) != 0">
+          <a class="nav-link active" href="#">{{userProfile?.id}}</a>
         </li>
       </ul>
     </div>
