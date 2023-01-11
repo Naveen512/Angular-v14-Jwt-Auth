@@ -21,11 +21,10 @@ export class AuthGuard implements CanActivate {
     | UrlTree
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree> {
-    
     this.authService.getAccessToken();
     var userProfile = this.authService.userProfile.getValue();
 
-    if ((userProfile?.sub ?? 0) > 0) {
+    if ((userProfile?.id ?? 0) > 0) {
       if (route.data['requiredAuth'] == false) {
         this.router.navigate(['/']);
         return false;

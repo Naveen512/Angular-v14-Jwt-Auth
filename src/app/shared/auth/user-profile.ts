@@ -1,7 +1,7 @@
 export interface UserProfile {
-  username: string;
-  sub: number;
-  email: string;
-  iat: number;
+  aud: string;
   exp: number;
+  id: string;
+  iss: string;
+  nbf: number;
 }

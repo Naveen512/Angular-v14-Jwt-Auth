@@ -1,3 +1,4 @@
+import { UsersModule } from './users/users.module';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
@@ -14,9 +15,9 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then((_) => _.AuthModule),
   },
   {
-    path: 'movies',
+    path: 'users',
     loadChildren: () =>
-      import('./movies/movies.module').then((_) => _.MoviesModule),
+      import('./users/users.module').then((_) => _.UsersModule),
   },
 ];
 
